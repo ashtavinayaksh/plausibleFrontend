@@ -1,0 +1,21 @@
+1. Email Settings permissions me (done)
+2. Is recurring dikho booking page par (done)
+3. Template me add temp title textfield (done)
+4. add booking page me form type  (done)
+5. add package button (done)
+6. stripe rejor remove and nativia, paypal will show (done)
+7. form Template me add new button. (done)
+8. booking page create freze  (done)
+
+9. booking me mode zoom ho to connection check akrna chahiye. 
+
+1. admin panel  (done)
+2. dashboard me income dikhow 1st tab me
+3. submit fromtmp details in appointment
+4. Day,month,weekly layout   (done)
+
+
+
+BkpPat#$%12434576
+
+file:///E:/MeetWeb/PchyAdmin/index-analytics.html
