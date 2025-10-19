@@ -80,24 +80,17 @@
     </div>
 
     <!-- AI Chat Button -->
-    <div class="ai-chat-fab" @click="clickChatNow()" title="AI Assistant">
-      <SparklesIcon class="chat-icon" />
-      <span class="chat-pulse"></span>
-      <span class="chat-tooltip">AI Assistant</span>
-    </div>
   </div>
 </template>
 
 <script>
 import { reportUrl } from "@/apis/appconst";
-import { SparklesIcon } from "@heroicons/vue/24/outline";
+
 import { checkWebUrl } from "@/apis/webapis";
 
 export default {
   name: "AppDash",
-  components: {
-    SparklesIcon,
-  },
+
   methods: {
     async chkUrlNow() {
       const response = await checkWebUrl(this.web_url);

@@ -1,8 +1,7 @@
 <template>
   <div class="auth-wrapper">
     <div class="auth-container">
-      <!-- Left Section -->
-      <div class="auth-left">
+      <div class="auth-content">
         <div class="auth-card animate-fade">
           <!-- LOGIN -->
           <div v-if="page_no == 1">
@@ -75,7 +74,7 @@
               </a>
 
               <p class="auth-footer">
-                Don’t have an account?
+                Don't have an account?
                 <a href="javascript:void(0)" @click="set_page(2)">Create</a>
               </p>
             </form>
@@ -158,7 +157,7 @@
                 class="auth-logo"
               />
               <h2 class="auth-title">Forgot Password 🔐</h2>
-              <p class="auth-subtitle">We’ll send you a reset link</p>
+              <p class="auth-subtitle">We'll send you a reset link</p>
             </div>
 
             <form @submit.prevent="handleSubmit2">
@@ -190,18 +189,6 @@
             </form>
           </div>
         </div>
-      </div>
-
-      <!-- Right Section -->
-      <div class="auth-right">
-        <div class="overlay"></div>
-        <!-- <div class="right-content">
-          <h1>Welcome to <span>Plausible</span></h1>
-          <p>
-            Powerful analytics and dashboards to manage all your data — clean,
-            fast, and intuitive.
-          </p>
-        </div> -->
       </div>
     </div>
   </div>
@@ -321,7 +308,7 @@ export default {
 .auth-wrapper {
   min-height: 100vh;
   display: flex;
-  background: linear-gradient(135deg, #0e1622, #1f2d3a, #16232e);
+  background: #f8f9fa;
   font-family: "Poppins", sans-serif;
   overflow: hidden;
 }
@@ -329,25 +316,23 @@ export default {
 .auth-container {
   display: flex;
   flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
-.auth-left {
-  flex: 1;
+.auth-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
 }
 
 .auth-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px);
+  background: #ffffff;
   border-radius: 16px;
-  padding: 2rem;
+  padding: 3.5rem;
   width: 100%;
-  max-width: 420px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-  color: #fff;
+  width: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.6s ease;
 }
 
@@ -358,28 +343,31 @@ export default {
 
 .auth-header {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .auth-title {
   font-size: 1.6rem;
   font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
 }
 
 .auth-subtitle {
-  font-size: 0.9rem;
-  color: #a3b1c6;
+  font-size: 0.95rem;
+  color: #718096;
 }
 
 .input-wrapper {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .input-wrapper label {
-  font-size: 0.85rem;
-  color: #a3b1c6;
-  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
   display: block;
+  font-weight: 500;
 }
 
 .input-box {
@@ -391,41 +379,59 @@ export default {
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #00b7ff;
+  color: #718096;
 }
 
 .input-box input {
   width: 100%;
-  padding: 0.7rem 0.75rem 0.7rem 2.5rem;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #2d3748;
   font-size: 0.95rem;
   transition: all 0.3s ease;
+}
+
+.input-box input::placeholder {
+  color: #a0aec0;
 }
 
 .input-box input:focus {
   border-color: #00b7ff;
   outline: none;
-  box-shadow: 0 0 6px rgba(0, 183, 255, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 183, 255, 0.1);
 }
 
 .toggle {
   cursor: pointer;
+  right: 14px;
+  left: auto !important;
 }
 
 .auth-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
-  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.auth-options .remember {
+  color: #4a5568;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .auth-options a {
   color: #00b7ff;
   text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-options a:hover {
+  text-decoration: underline;
 }
 
 .btn-primary {
@@ -435,14 +441,16 @@ export default {
   border-radius: 8px;
   color: #fff;
   font-weight: 600;
-  padding: 0.8rem;
+  padding: 0.85rem;
   cursor: pointer;
   transition: 0.3s;
+  font-size: 1rem;
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #0072ff, #00b7ff);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 183, 255, 0.3);
 }
 
 .btn-google {
@@ -452,51 +460,54 @@ export default {
   gap: 0.5rem;
   width: 100%;
   border-radius: 8px;
-  background: #fff;
-  color: #000;
-  padding: 0.8rem;
+  background: #ffffff;
+  color: #4a5568;
+  padding: 0.85rem;
   font-weight: 500;
   transition: 0.3s;
+  border: 1px solid #e2e8f0;
+  text-decoration: none;
 }
 
 .btn-google:hover {
-  background: #f0f0f0;
+  background: #f7fafc;
+  border-color: #cbd5e0;
 }
 
 .divider {
   text-align: center;
-  margin: 1rem 0;
-  color: #a3b1c6;
+  margin: 1.5rem 0;
+  color: #a0aec0;
   position: relative;
 }
 
-.divider::before,
-.divider::after {
-  content: "";
-  position: absolute;
-  width: 40%;
-  height: 1px;
-  top: 50%;
-  background: rgba(255, 255, 255, 0.2);
+.divider span {
+  background: #ffffff;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .divider::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 50%;
   left: 0;
-}
-.divider::after {
-  right: 0;
+  background: #e2e8f0;
 }
 
 .auth-footer {
   text-align: center;
   margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: #a3b1c6;
+  font-size: 0.95rem;
+  color: #718096;
 }
 
 .auth-footer a {
   color: #00b7ff;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -504,48 +515,23 @@ export default {
   text-decoration: underline;
 }
 
-/* RIGHT SECTION */
-.auth-right {
-  flex: 1.2;
-  background: url("../assets/login-bg.jpg") center/cover no-repeat;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  padding: 3rem;
+.alert {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom right,
-    rgba(14, 22, 34, 0.7),
-    rgba(0, 0, 0, 0.7)
-  );
+.alert-danger {
+  background-color: #fee;
+  color: #c53030;
+  border: 1px solid #fc8181;
 }
 
-.right-content {
-  position: relative;
-  text-align: center;
-  z-index: 1;
-  max-width: 400px;
-}
-
-.right-content h1 {
-  font-size: 2rem;
-  font-weight: 700;
-}
-
-.right-content span {
-  color: #00b7ff;
-}
-
-.right-content p {
-  margin-top: 0.75rem;
-  font-size: 1rem;
-  color: #d1d5db;
+.alert-success {
+  background-color: #f0fdf4;
+  color: #276749;
+  border: 1px solid #86efac;
 }
 
 .animate-fade {
@@ -555,7 +541,7 @@ export default {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -563,12 +549,14 @@ export default {
   }
 }
 
-@media (max-width: 992px) {
-  .auth-right {
-    display: none;
-  }
+@media (max-width: 480px) {
   .auth-card {
-    max-width: 90%;
+    padding: 2rem 1.5rem;
+    width: 100%;
+  }
+
+  .auth-title {
+    font-size: 1.4rem;
   }
 }
 </style>

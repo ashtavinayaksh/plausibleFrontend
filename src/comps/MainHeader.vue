@@ -39,19 +39,6 @@
       </ul>
 
       <ul class="navbar-nav ms-auto modern-nav-items">
-        <!-- Notification Icon -->
-        <li class="nav-item dropdown notification-item">
-          <a
-            class="nav-link count-indicator modern-notification"
-            id="notificationDropdown"
-            href="#"
-            data-bs-toggle="dropdown"
-          >
-            <i class="fa fa-bell notification-bell"></i>
-            <span class="notification-badge"></span>
-          </a>
-        </li>
-
         <!-- User Profile Dropdown -->
         <li
           class="nav-item dropdown d-none d-lg-block user-dropdown modern-user-dropdown"
@@ -316,7 +303,6 @@ export default {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   padding: 0;
   margin-top: 12px;
-  min-width: 280px;
   overflow: hidden;
 }
 

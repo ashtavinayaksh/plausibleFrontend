@@ -8,9 +8,7 @@
           :class="{ active: menu_pos === 1 }"
         >
           <a :href="'/'" class="nav-link modern-nav-link" @click="set_menu(1)">
-            <div class="icon-wrapper">
-              <HomeIcon class="menu-icon modern-icon" />
-            </div>
+            <HomeIcon class="menu-icon modern-icon" />
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
@@ -23,9 +21,7 @@
             class="nav-link modern-nav-link"
             @click="set_menu(2)"
           >
-            <div class="icon-wrapper">
-              <GlobeAltIcon class="menu-icon modern-icon" />
-            </div>
+            <GlobeAltIcon class="menu-icon modern-icon" />
             <span class="menu-title">My Websites</span>
           </a>
         </li>
@@ -38,9 +34,7 @@
             class="nav-link modern-nav-link"
             @click="set_menu(3)"
           >
-            <div class="icon-wrapper">
-              <GlobeAltIcon class="menu-icon modern-icon" />
-            </div>
+            <CreditCardIcon class="menu-icon modern-icon" />
             <span class="menu-title">Pricing</span>
           </a>
         </li>
@@ -50,11 +44,8 @@
             class="nav-link modern-nav-link"
             data-bs-toggle="modal"
             data-bs-target="#logoutForm"
-            @click="logoutNow()"
           >
-            <div class="icon-wrapper">
-              <ArrowRightOnRectangleIcon class="menu-icon modern-icon" />
-            </div>
+            <ArrowRightOnRectangleIcon class="menu-icon modern-icon" />
             <span class="menu-title">Logout</span>
           </a>
         </li>
@@ -67,9 +58,7 @@
           :class="{ active: menu_pos === 1 }"
         >
           <a :href="'/'" class="nav-link modern-nav-link" @click="set_menu(1)">
-            <div class="icon-wrapper">
-              <HomeIcon class="menu-icon modern-icon" />
-            </div>
+            <HomeIcon class="menu-icon modern-icon" />
             <span class="menu-title">Dashboard</span>
           </a>
         </li>
@@ -82,9 +71,7 @@
             class="nav-link modern-nav-link"
             @click="set_menu(2)"
           >
-            <div class="icon-wrapper">
-              <UsersIcon class="menu-icon modern-icon" />
-            </div>
+            <UsersIcon class="menu-icon modern-icon" />
             <span class="menu-title">All Customers</span>
           </a>
         </li>
@@ -97,9 +84,7 @@
             class="nav-link modern-nav-link"
             @click="set_menu(3)"
           >
-            <div class="icon-wrapper">
-              <UserGroupIcon class="menu-icon modern-icon" />
-            </div>
+            <UserGroupIcon class="menu-icon modern-icon" />
             <span class="menu-title">Subscribers</span>
           </a>
         </li>
@@ -112,9 +97,7 @@
             class="nav-link modern-nav-link"
             @click="set_menu(4)"
           >
-            <div class="icon-wrapper">
-              <CreditCardIcon class="menu-icon modern-icon" />
-            </div>
+            <CreditCardIcon class="menu-icon modern-icon" />
             <span class="menu-title">Membership Plans</span>
           </a>
         </li>
@@ -124,11 +107,8 @@
             class="nav-link modern-nav-link"
             data-bs-toggle="modal"
             data-bs-target="#logoutForm"
-            @click="logoutNow()"
           >
-            <div class="icon-wrapper">
-              <ArrowRightOnRectangleIcon class="menu-icon modern-icon" />
-            </div>
+            <ArrowRightOnRectangleIcon class="menu-icon modern-icon" />
             <span class="menu-title">Logout</span>
           </a>
         </li>
@@ -222,24 +202,23 @@ export default {
     };
   },
   mounted() {
-  if (
-    sessionStorage.getItem("ldata") &&
-    sessionStorage.getItem("ldata").length > 0
-  ) {
-    this.ldata = JSON.parse(sessionStorage.getItem("ldata"));
-  }
+    if (
+      sessionStorage.getItem("ldata") &&
+      sessionStorage.getItem("ldata").length > 0
+    ) {
+      this.ldata = JSON.parse(sessionStorage.getItem("ldata"));
+    }
 
-  this.base_url = mainBaseUrl;
-  const pathSegments = window.location.pathname.split("/").filter(Boolean);
-  const lastSegment = pathSegments.length ? pathSegments.pop() : "";
+    this.base_url = mainBaseUrl;
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
+    const lastSegment = pathSegments.length ? pathSegments.pop() : "";
 
-  if (lastSegment && lastSegment.localeCompare("bookings") === 0) {
-    this.set_menu(2);
-  } else {
-    this.set_menu(1);
-  }
-}
-
+    if (lastSegment && lastSegment.localeCompare("bookings") === 0) {
+      this.set_menu(2);
+    } else {
+      this.set_menu(1);
+    }
+  },
 };
 </script>
 
@@ -247,179 +226,218 @@ export default {
 /* Modern Sidebar */
 .modern-sidebar {
   background: #ffffff;
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.08);
-  border-right: 1px solid #f0f0f0;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
+  border-right: 1px solid #e2e8f0;
   padding: 1rem 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo Section */
+.sidebar-logo {
+  padding: 1rem 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-logo img {
+  max-width: 120px;
+  height: auto;
+  object-fit: contain;
 }
 
 .modern-nav {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
   padding: 0 1rem;
+  flex: 1;
 }
 
 /* Nav Item */
 .modern-nav-item {
-  border-radius: 12px;
+  border-radius: 10px;
   transition: all 0.3s ease;
-  overflow: hidden;
+  position: relative;
 }
 
 .modern-nav-link {
   display: flex;
   align-items: center;
-  padding: 1rem 1.25rem;
-  color: #4a5568;
+  padding: 0.875rem 1rem;
+  color: #64748b;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: 10px;
   transition: all 0.3s ease;
   position: relative;
+  gap: 0.875rem;
 }
 
-.modern-nav-link:hover {
-  background: #f7fafc;
-  color: #667eea;
-  transform: translateX(4px);
+/* .modern-nav-link:hover {
+  background: #f8fafc;
+  color: #00b7ff;
+} */
+
+/* Icon Styling */
+.modern-icon {
+  width: 20px;
+  height: 20px;
+  color: #000;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
 }
 
 /* Active State */
 .modern-nav-item.active .modern-nav-link {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, #00b7ff 0%, #006bff 100%);
+  color: #000;
+}
+
+.modern-nav-item.active .modern-icon {
+  color: #000;
+  transform: scale(1.1);
 }
 
 .modern-nav-item.active .modern-nav-link::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: #ffffff;
-  border-radius: 0 4px 4px 0;
-}
-
-/* Icon Wrapper */
-.icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #f7fafc;
-  margin-right: 1rem;
-  transition: all 0.3s ease;
-}
-
-.modern-nav-link:hover .icon-wrapper {
-  background: #edf2f7;
-}
-
-.modern-nav-item.active .icon-wrapper {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-}
-
-.modern-icon {
-  width: 22px;
-  height: 22px;
-  color: currentColor;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 24px;
+  background: #000;
+  border-radius: 0 3px 3px 0;
 }
 
 /* Menu Title */
 .menu-title {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.925rem;
+  font-weight: 500;
   letter-spacing: -0.2px;
+  white-space: nowrap;
 }
 
 /* Logout Item */
 .logout-item {
   margin-top: auto;
   padding-top: 1rem;
-  border-top: 1px solid #f0f0f0;
-  margin-top: 1rem;
+  border-top: 1px solid #e2e8f0;
 }
 
 .logout-item .modern-nav-link {
-  color: #f56565;
+  color: #ef4444;
 }
 
-.logout-item .modern-nav-link:hover {
-  background: #fff5f5;
-  color: #e53e3e;
-}
+/* .logout-item .modern-nav-link:hover {
+  background: #fef2f2;
+  color: #dc2626;
+} */
 
-.logout-item .icon-wrapper {
-  background: #fff5f5;
-}
-
-.logout-item .modern-nav-link:hover .icon-wrapper {
-  background: #fed7d7;
+.logout-item .modern-icon {
+  color: currentColor;
 }
 
 /* Modal Styling */
 .modern-modal {
   border-radius: 16px;
   border: none;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .modern-modal .modal-header {
   padding: 1.5rem 1.5rem 1rem;
+  background: #000;
+  border-radius: 16px 16px 0 0;
 }
 
 .modern-modal .modal-title {
-  font-weight: 700;
-  color: #2d3748;
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 1.125rem;
 }
 
 .modern-modal .modal-body {
-  padding: 1rem 1.5rem;
-  color: #4a5568;
+  padding: 1.5rem;
+  color: #64748b;
+  font-size: 0.95rem;
 }
 
 .modern-modal .modal-footer {
   padding: 1rem 1.5rem 1.5rem;
+  background: #000;
+  border-radius: 0 0 16px 16px;
+  gap: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .modern-modal .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #00b7ff 0%, #006bff 100%);
   border: none;
   padding: 0.625rem 1.5rem;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.925rem;
+  transition: all 0.3s ease;
 }
 
-.modern-modal .btn-primary:hover {
+/* .modern-modal .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
+  box-shadow: 0 4px 12px rgba(0, 183, 255, 0.3);
+} */
 
 .modern-modal .btn-secondary {
-  background: #f7fafc;
-  color: #4a5568;
-  border: none;
+  background: #000;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
   padding: 0.625rem 1.5rem;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.925rem;
+  transition: all 0.3s ease;
 }
 
-.modern-modal .btn-secondary:hover {
-  background: #edf2f7;
+/* .modern-modal .btn-secondary:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+} */
+
+.btn-close {
+  background: transparent;
+  opacity: 0.5;
 }
+
+/* .btn-close:hover {
+  opacity: 1;
+} */
 
 /* Responsive */
 @media (max-width: 991px) {
   .modern-sidebar {
     position: fixed;
     top: 0;
-    left: 0;
+    left: -250px;
+    width: 250px;
     height: 100vh;
     z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .modern-sidebar.show {
+    left: 0;
+  }
+
+  .sidebar-logo {
+    padding: 1rem 1.25rem 1.5rem;
+  }
+
+  .sidebar-logo img {
+    max-width: 100px;
   }
 
   .modern-nav {
@@ -427,22 +445,28 @@ export default {
   }
 
   .modern-nav-link {
-    padding: 0.875rem 1rem;
-  }
-
-  .icon-wrapper {
-    width: 36px;
-    height: 36px;
-    margin-right: 0.75rem;
+    padding: 0.75rem 0.875rem;
+    gap: 0.75rem;
   }
 
   .modern-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .menu-title {
     font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .modern-sidebar {
+    width: 100%;
+    left: -100%;
+  }
+
+  .modern-modal .modal-dialog {
+    margin: 1rem;
   }
 }
 </style>

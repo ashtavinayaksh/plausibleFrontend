@@ -42,9 +42,24 @@ export default {
     return {
       // Replace these plans with dynamic fetch if you have plans in DB
       plans: [
-        { id: 1, name: "Starter", price: 199, features: ["1 site", "Basic reports"] },
-        { id: 2, name: "Growth", price: 399, features: ["3 sites", "Team access"] },
-        { id: 3, name: "Business", price: 799, features: ["10 sites", "Priority support"] },
+        {
+          id: 1,
+          name: "Starter",
+          price: 199,
+          features: ["1 site", "Basic reports"],
+        },
+        {
+          id: 2,
+          name: "Growth",
+          price: 399,
+          features: ["3 sites", "Team access"],
+        },
+        {
+          id: 3,
+          name: "Business",
+          price: 799,
+          features: ["10 sites", "Priority support"],
+        },
       ],
     };
   },
@@ -85,7 +100,10 @@ export default {
       // NOTE: The backend will redirect to Stripe directly; we therefore navigate the browser
       // to this endpoint so the server does the redirect.
       const currency = "USD"; // change to INR if your Stripe acct uses INR (or use dynamic)
-      const redirectUrl = `${API_BASE.replace(/\/$/, "")}/stripe/redirectToPaymentGateway?amount=${encodeURIComponent(
+      const redirectUrl = `${API_BASE.replace(
+        /\/$/,
+        ""
+      )}/stripe/redirectToPaymentGateway?amount=${encodeURIComponent(
         planId
       )}&uid=${encodeURIComponent(uid)}&curr=${encodeURIComponent(currency)}`;
 
@@ -107,7 +125,7 @@ export default {
   border-radius: 10px;
   padding: 22px;
   margin-bottom: 18px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
   text-align: center;
 }
 .plan-price {
@@ -118,5 +136,8 @@ export default {
 .btn-primary {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
+}
+.plan-features mt-4 {
+  list-style: none;
 }
 </style>

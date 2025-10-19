@@ -37,7 +37,7 @@
         </div>
         <div class="header-actions">
           <button @click="set_page(1)" class="action-btn-primary">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
               <path
                 d="M10 4.16667V15.8333M4.16667 10H15.8333"
                 stroke="currentColor"
@@ -53,27 +53,30 @@
       <!-- Search and Filter Bar -->
       <div class="search-filter-bar">
         <div class="search-box">
-          <svg
-            class="search-icon"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-          >
-            <path
-              d="M17.5 17.5L13.875 13.875M15.8333 9.16667C15.8333 12.8486 12.8486 15.8333 9.16667 15.8333C5.48477 15.8333 2.5 12.8486 2.5 9.16667C2.5 5.48477 5.48477 2.5 9.16667 2.5C12.8486 2.5 15.8333 5.48477 15.8333 9.16667Z"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-            />
-          </svg>
           <input
             type="text"
-            placeholder="Search websites..."
+            placeholder="Search websites by domain, timezone..."
             class="search-input"
             v-model="searchQuery"
             @input="filterWebsites"
+            @keyup.enter="filterWebsites"
           />
+          <!-- Clear button - shows only when there's text -->
+          <button
+            v-if="searchQuery && searchQuery.length > 0"
+            @click="clearSearch"
+            class="search-clear-btn"
+            title="Clear search"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M12 4L4 12M4 4L12 12"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
         </div>
         <div class="filter-group">
           <select class="filter-select" v-model="sortBy" @change="sortWebsites">
@@ -310,7 +313,7 @@
                 </svg>
               </div>
               <div class="stat-box-content">
-                <span class="stat-box-value">{{ website.visitors }}</span>
+                <span class="stat-box-value">{{ website.visitors || 0 }}</span>
                 <span class="stat-box-label">Visitors</span>
               </div>
             </div>
@@ -486,12 +489,27 @@
       <p class="empty-description">
         {{
           searchQuery
-            ? "Try adjusting your search criteria"
+            ? "Try adjusting your search criteria or clear the search to see all websites"
             : "Add your first website and unlock powerful insights into your traffic, user behavior, and performance metrics."
         }}
       </p>
-      <button v-if="!searchQuery" @click="set_page(1)" class="empty-cta-btn">
+      <button
+        v-if="searchQuery"
+        @click="clearSearch"
+        class="empty-cta-btn secondary"
+      >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path
+            d="M15 5L5 15M5 5L15 15"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+        <span>Clear Search</span>
+      </button>
+      <button v-else @click="set_page(1)" class="empty-cta-btn">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
           <path
             d="M10 4.16667V15.8333M4.16667 10H15.8333"
             stroke="currentColor"
@@ -499,7 +517,7 @@
             stroke-linecap="round"
           />
         </svg>
-        <span>Add Your First Website</span>
+        <span>Add Website</span>
       </button>
     </div>
 
@@ -624,14 +642,6 @@
               Cancel
             </button>
             <button type="button" class="modal-btn-danger" @click="del_item()">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M2 4H14M6 7V11M10 7V11M3 4L4 13C4 13.5523 4.44772 14 5 14H11C11.5523 14 12 13.5523 12 13L13 4M6 4V2C6 1.44772 6.44772 1 7 1H9C9.55228 1 10 1.44772 10 2V4"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                />
-              </svg>
               Delete Website
             </button>
           </div>
@@ -941,8 +951,6 @@
             <div class="code-header-premium">
               <div class="code-tabs">
                 <button class="code-tab active">HTML</button>
-                <button class="code-tab">WordPress</button>
-                <button class="code-tab">React</button>
               </div>
               <button class="copy-button-premium" @click="copy_script()">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -987,60 +995,6 @@
                 <strong>Deploy changes</strong>
                 <p>Push your changes and verify installation</p>
               </div>
-            </div>
-          </div>
-
-          <div class="platform-guides">
-            <h4 class="guides-title">Platform-specific guides:</h4>
-            <div class="guide-links">
-              <a href="#" class="guide-link">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M10 14V10M10 6H10.01"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                <span>WordPress Guide</span>
-              </a>
-              <a href="#" class="guide-link">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M10 14V10M10 6H10.01"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                <span>React/Next.js Guide</span>
-              </a>
-              <a href="#" class="guide-link">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path
-                    d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                  <path
-                    d="M10 14V10M10 6H10.01"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  />
-                </svg>
-                <span>Shopify Guide</span>
-              </a>
             </div>
           </div>
         </div>
@@ -1157,7 +1111,7 @@
               stroke-linejoin="round"
             />
           </svg>
-          Previous Step
+          Previous
         </button>
         <button @click="next_page()" class="wizard-btn-primary">
           {{ main_status === 3 ? "Complete Setup" : "Continue" }}
@@ -1244,34 +1198,58 @@ export default {
       );
       if (response.status) {
         this.bookings = response.records;
-        this.filteredBookings = response.records;
+        // Reset search when loading new data
+        this.searchQuery = "";
+        this.filteredBookings = [...response.records];
         this.totalRecords = response.total1;
       }
     },
 
     filterWebsites() {
-      if (!this.searchQuery) {
-        this.filteredBookings = this.bookings;
+      if (!this.searchQuery || this.searchQuery.trim() === "") {
+        this.filteredBookings = [...this.bookings];
       } else {
-        this.filteredBookings = this.bookings.filter((site) =>
-          site.web_link.toLowerCase().includes(this.searchQuery.toLowerCase())
-        );
+        const query = this.searchQuery.toLowerCase().trim();
+        this.filteredBookings = this.bookings.filter((site) => {
+          // Search in multiple fields for better results
+          return (
+            site.web_link.toLowerCase().includes(query) ||
+            site.web_timezone.toLowerCase().includes(query) ||
+            (site.visitors && site.visitors.toString().includes(query))
+          );
+        });
       }
+      // Apply sorting after filtering
+      this.sortWebsites();
     },
 
     sortWebsites() {
+      // Create a copy to avoid mutating the original array
+      let sortedBookings = [...this.filteredBookings];
+
       switch (this.sortBy) {
         case "visitors":
-          this.filteredBookings.sort((a, b) => b.visitors - a.visitors);
+          sortedBookings.sort((a, b) => {
+            const visitorsA = parseInt(a.visitors) || 0;
+            const visitorsB = parseInt(b.visitors) || 0;
+            return visitorsB - visitorsA;
+          });
           break;
         case "name":
-          this.filteredBookings.sort((a, b) =>
-            a.web_link.localeCompare(b.web_link)
-          );
+          sortedBookings.sort((a, b) => a.web_link.localeCompare(b.web_link));
           break;
+        case "recent":
         default:
-          this.filteredBookings = [...this.bookings];
+          // If you have a date field, sort by it, otherwise maintain original order
+          break;
       }
+
+      this.filteredBookings = sortedBookings;
+    },
+
+    clearSearch() {
+      this.searchQuery = "";
+      this.filterWebsites();
     },
 
     getTotalVisitors() {
@@ -1564,7 +1542,7 @@ export default {
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 3rem;
+  padding: 0.75rem 3rem 0.75rem 3rem;
   border: 2px solid #e2e8f0;
   border-radius: 10px;
   font-size: 0.9375rem;
@@ -1576,6 +1554,34 @@ export default {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.search-input:not(:placeholder-shown) {
+  border-color: #667eea;
+  background: #fafbff;
+}
+
+.search-clear-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 6px;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  background: #e2e8f0;
+  color: #475569;
 }
 
 .filter-group {
@@ -2003,7 +2009,7 @@ export default {
 /* Premium Empty State */
 .premium-empty-state {
   text-align: center;
-  padding: 5rem 2rem;
+  padding: 2rem 1rem;
   background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
@@ -2044,9 +2050,20 @@ export default {
   transition: all 0.3s ease;
 }
 
+.empty-cta-btn.secondary {
+  background: #f8fafc;
+  color: #475569;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 .empty-cta-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.empty-cta-btn.secondary:hover {
+  background: #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 /* Premium Pagination */
@@ -2921,7 +2938,7 @@ export default {
 /* Wizard Footer Actions */
 .wizard-footer-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 1rem;
   margin-top: auto;
   padding-top: 2rem;
