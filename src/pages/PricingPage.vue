@@ -137,7 +137,7 @@ export default {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
 }
-.plan-features mt-4 {
+.plan-features.mt-4 li {
   list-style: none;
 }
 </style>
