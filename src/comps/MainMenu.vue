@@ -42,8 +42,7 @@
           <a
             href="javascript:void(0)"
             class="nav-link modern-nav-link"
-            data-bs-toggle="modal"
-            data-bs-target="#logoutForm"
+            @click="logoutNow()"
           >
             <ArrowRightOnRectangleIcon class="menu-icon modern-icon" />
             <span class="menu-title">Logout</span>
@@ -339,7 +338,7 @@ export default {
 } */
 
 .logout-item .modern-icon {
-  color: currentColor;
+  color: #000;
 }
 
 /* Modal Styling */

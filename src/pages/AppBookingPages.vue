@@ -283,15 +283,6 @@
                 </span>
               </div>
             </div>
-            <div class="card-menu">
-              <button class="menu-btn">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="5" r="1.5" fill="currentColor" />
-                  <circle cx="10" cy="10" r="1.5" fill="currentColor" />
-                  <circle cx="10" cy="15" r="1.5" fill="currentColor" />
-                </svg>
-              </button>
-            </div>
           </div>
 
           <!-- Card Stats Grid -->
@@ -320,18 +311,17 @@
 
             <div class="stat-box">
               <div class="stat-box-icon">
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
                   <path
-                    d="M15.75 6.75L9 12L6 9M15.75 11.25L9 16.5L6 13.5"
+                    d="M7 10H13M10 7V13M21 21L15 15M3 10C3 10.9193 3.18106 11.8295 3.53284 12.6788C3.88463 13.5281 4.40024 14.2997 5.05025 14.9497C5.70026 15.5998 6.47194 16.1154 7.32122 16.4672C8.1705 16.8189 9.08075 17 10 17C10.9193 17 11.8295 16.8189 12.6788 16.4672C13.5281 16.1154 14.2997 15.5998 14.9497 14.9497C15.5998 14.2997 16.1154 13.5281 16.4672 12.6788C16.8189 11.8295 17 10.9193 17 10C17 9.08075 16.8189 8.1705 16.4672 7.32122C16.1154 6.47194 15.5998 5.70026 14.9497 5.05025C14.2997 4.40024 13.5281 3.88463 12.6788 3.53284C11.8295 3.18106 10.9193 3 10 3C9.08075 3 8.1705 3.18106 7.32122 3.53284C6.47194 3.88463 5.70026 4.40024 5.05025 5.05025C4.40024 5.70026 3.88463 6.47194 3.53284 7.32122C3.18106 8.1705 3 9.08075 3 10Z"
                     stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <path
-                    d="M6 4.5L9 1.5L15.75 6.75"
-                    stroke="currentColor"
-                    stroke-width="1.5"
+                    stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   />
@@ -434,7 +424,9 @@
                     stroke-width="1.5"
                   />
                 </svg>
-                <span>Script</span>
+                <span>{{
+                  copiedWebsiteId === website.web_id ? "Copied" : "Script"
+                }}</span>
               </button>
               <button
                 @click="del_item1(website)"
@@ -1168,6 +1160,7 @@ export default {
       searchQuery: "",
       sortBy: "recent",
       viewMode: "grid",
+      copiedWebsiteId: null,
     };
   },
   methods: {
@@ -1317,9 +1310,11 @@ export default {
         .then(() => {
           this.msgType = "success";
           this.msgTxt = "Script copied to clipboard!";
+          this.copiedWebsiteId = user.web_id;
           setTimeout(() => {
             this.msgType = "";
             this.msgTxt = "";
+            this.copiedWebsiteId = null;
           }, 3000);
         })
         .catch((err) => console.error("Error copying: ", err));
@@ -1764,7 +1759,7 @@ export default {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  /* background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); */
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -1809,6 +1804,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 30px;
 }
 
 .website-status {

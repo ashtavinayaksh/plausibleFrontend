@@ -40,7 +40,7 @@
 
       <ul class="navbar-nav ms-auto modern-nav-items">
         <!-- User Profile Dropdown -->
-        <li
+        <!-- <li
           class="nav-item dropdown d-none d-lg-block user-dropdown modern-user-dropdown"
         >
           <a
@@ -86,7 +86,7 @@
               <span>Sign Out</span>
             </a>
           </div>
-        </li>
+        </li> -->
       </ul>
 
       <button
